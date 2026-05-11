@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import localData from "../localData.js";
-import Home from "./pages/Home.jsx";
-import SavedCountries from "./pages/SavedCountries.jsx";
-import CountryDetail from "./pages/CountryDetail.jsx";
+import localData from "../../localData.js";
+import Home from "./pages/Home.js";
+import SavedCountries from "./pages/SavedCountries.js";
+import CountryDetail from "./pages/CountryDetail.js";
 import "./App.css";
 
 function App() {
