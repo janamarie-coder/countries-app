@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import localData from "../../localData.js";
+import localData from "../localData.js";
 import Home from "./pages/Home.js";
 import SavedCountries from "./pages/SavedCountries.js";
 import CountryDetail from "./pages/CountryDetail.js";
