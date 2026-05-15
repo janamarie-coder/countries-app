@@ -11,7 +11,7 @@ function Home({ countriesData }) {
   const [region, setRegion] = useState("");
 
   // filter the countries list every time search or region changes
-  // we don't store this in state, we just calculate it fresh each render
+  // we don't store this in state,  we just calculate it fresh each render
   const filteredCountries = countriesData.filter((country) => {
     const matchesSearch = country.name.common
       .toLowerCase()
