@@ -23,7 +23,7 @@ function CountryCard({ country }) {
   src={flag}
   alt={`Flag of ${name}`}
   className="card-flag"
- onError={(e) => e.target.src = "https://placehold.co/320x200?text=No+Flag"}
+ onError={(e) => e.target.style.display = "none"}
 />
       <div className="card-info">
         <h2 className="card-name">{name}</h2>
