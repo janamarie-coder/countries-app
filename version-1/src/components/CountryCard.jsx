@@ -5,7 +5,7 @@ function CountryCard({ country }) {
   const navigate = useNavigate();
 
   const name = country.name.common;
-  const flag = country.flags?.png || country.flags?.svg;
+  const flag = country.flags?.svg || country.flags?.png;
   const population = country.population.toLocaleString();
   const region = country.region;
   const capital = country.capital?.[0] ?? "N/A";
