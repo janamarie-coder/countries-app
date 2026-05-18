@@ -7,7 +7,7 @@
    server: {
      proxy: {
        "/api": {
-         target: "<https://backend-answer-keys.onrender.com/>",
+         target: "https://backend-answer-keys.onrender.com",
          changeOrigin: true,
          secure: false,
          rewrite: (path) => path.replace(/^\/api/, ""),
