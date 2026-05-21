@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function SavedCountries({ countriesData }) {
-  // Form state, one object holds all field values
+
+  // stores the form input values
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -9,9 +10,53 @@ function SavedCountries({ countriesData }) {
     bio: "",
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  // stores the most recently submitted user from the backend
+  const [currentUser, setCurrentUser] = useState(null);
 
-  // Update the correct field when user types
+  // stores the list of all saved countries from the backend
+  const [savedCountries, setSavedCountries] = useState([]);
+
+
+ 
+  // GET: retrieve the newest user when the page loads
+  // if a user already exists, we show "Welcome, [name]!" instead of the form
+  useEffect(() => {
+    const getNewestUser = async () => {
+      try {
+        const response = await fetch("/api/get-newest-user");
+        const data = await response.json();
+        // the response is an array — we grab the first item
+        if (data.length > 0) {
+          setCurrentUser(data[0]);
+        }
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    };
+
+    getNewestUser();
+  }, []);
+
+
+  
+  // GET: retrieve all saved countries when the page loads
+  // so the user can see which countries they have saved
+  useEffect(() => {
+    const getSavedCountries = async () => {
+      try {
+        const response = await fetch("/api/get-all-saved-countries");
+        const data = await response.json();
+        setSavedCountries(data);
+      } catch (error) {
+        console.error("Error fetching saved countries:", error);
+      }
+    };
+
+    getSavedCountries();
+  }, []);
+
+
+  // update the correct field in formData when the user types
   function handleChange(event) {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
@@ -20,21 +65,63 @@ function SavedCountries({ countriesData }) {
     }));
   }
 
-  // Handle form submission
-  function handleSubmit(event) {
+
+ 
+  // POST: send the form data to the backend when the user submits
+  // this saves the user's profile information in the database
+  async function handleSubmit(event) {
     event.preventDefault();
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
+
+    try {
+      const response = await fetch("/api/add-one-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // send the form data as a JSON string in the request body
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          country_name: formData.country,
+          bio: formData.bio,
+        }),
+      });
+
+      const data = await response.text();
+      console.log("POST response:", data);
+
+      // after saving, fetch the newest user so we can show "Welcome, [name]!"
+      const userResponse = await fetch("/api/get-newest-user");
+      const userData = await userResponse.json();
+      if (userData.length > 0) {
+        setCurrentUser(userData[0]);
+      }
+
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   }
+
 
   return (
     <main className="saved-page">
       <h1 className="saved-title">Saved Countries</h1>
 
-      {submitted ? (
-        <p className="success-message">Profile saved! 🎉</p>
+      {/* show all saved countries from the backend */}
+      <div className="saved-countries-list">
+        {savedCountries.map((country) => (
+          <div key={country.country_name} className="saved-country-chip">
+            {country.country_name}
+          </div>
+        ))}
+      </div>
+
+      {/* if user already exists, show welcome message — otherwise show the form */}
+      {currentUser ? (
+        <p className="welcome-message">Welcome, {currentUser.name}!</p>
       ) : (
         <form className="profile-form" onSubmit={handleSubmit}>
+
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <input
@@ -71,7 +158,7 @@ function SavedCountries({ countriesData }) {
               required
             >
               <option value="">Select a country</option>
-              {/* Populate dropdown from API data */}
+              {/* populate dropdown from API data */}
               {countriesData.map((c) => (
                 <option key={c.cca3} value={c.name.common}>
                   {c.name.common}
