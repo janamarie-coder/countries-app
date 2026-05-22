@@ -311,3 +311,26 @@ a {
     max-width: 100%;
   }
 }
+
+.save-btn {
+  padding: 0.6rem 1.5rem;
+  background: #7672ce;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: opacity 0.2s;
+}
+
+.save-btn:hover {
+  opacity: 0.85;
+}
+
+.view-count {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
