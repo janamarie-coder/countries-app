@@ -144,10 +144,12 @@ function SavedCountries({ countriesData }) {
         ))}
       </div>
 
-      {/* if user already exists, show welcome message — otherwise show the form */}
-      {currentUser ? (
+     {/* show welcome message if a user exists */}
+      {currentUser && (
         <p className="welcome-message">Welcome, {currentUser.name}!</p>
-      ) : (
+     )}
+
+     {/* always show the form */}
         <form className="profile-form" onSubmit={handleSubmit}>
 
           <div className="form-group">
@@ -208,7 +210,7 @@ function SavedCountries({ countriesData }) {
 
           <button type="submit" className="submit-btn">Save Profile</button>
         </form>
-      )}
+      
     </main>
   );
 }
