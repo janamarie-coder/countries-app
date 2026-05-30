@@ -334,3 +334,65 @@ a {
   margin-top: 1rem;
   font-size: 0.9rem;
 }
+
+.saved-country-chip {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.8rem;
+}
+
+.saved-flag {
+  width: 80px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.saved-country-info {
+  flex: 1;
+}
+
+.saved-country-name {
+  font-weight: 800;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+.saved-country-detail {
+  font-size: 0.8rem;
+  color: #555;
+  margin-bottom: 0.15rem;
+}
+
+.unsave-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #858585;
+  font-size: 1rem;
+  padding: 0 0.3rem;
+  transition: color 0.2s;
+}
+
+.unsave-btn:hover {
+  color: #e74c3c;
+}
+
+.heart-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: transform 0.2s;
+  display: block;
+}
+
+.heart-btn:hover {
+  transform: scale(1.2);
+}

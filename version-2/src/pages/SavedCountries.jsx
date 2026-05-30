@@ -128,21 +128,42 @@ function SavedCountries({ countriesData }) {
     <main className="saved-page">
       <h1 className="saved-title">Saved Countries</h1>
 
-      {/* show all saved countries with an unsave button for each */}
-      <div className="saved-countries-list">
-        {savedCountries.map((country) => (
-          <div key={country.country_name} className="saved-country-chip">
-            <span>{country.country_name}</span>
-            {/* clicking ✕ removes this country from the saved list */}
-            <button
-              className="unsave-btn"
-              onClick={() => handleUnsave(country.country_name)}
-            >
-              ✕
-            </button>
-          </div>
-        ))}
+     {/* show all saved countries with flag, capital, region and population */}
+<div className="saved-countries-list">
+  {savedCountries.map((saved) => {
+    // find the full country data from countriesData using the saved country name
+    const countryInfo = countriesData.find(
+      (c) => c.name.common === saved.country_name
+    );
+    return (
+      <div key={saved.country_name} className="saved-country-chip">
+        {countryInfo && (
+          <img
+            src={countryInfo.flags?.svg || countryInfo.flags?.png}
+            alt={`Flag of ${saved.country_name}`}
+            className="saved-flag"
+          />
+        )}
+        <div className="saved-country-info">
+          <p className="saved-country-name">{saved.country_name}</p>
+          {countryInfo && (
+            <>
+              <p className="saved-country-detail">Capital: {countryInfo.capital?.[0] ?? "N/A"}</p>
+              <p className="saved-country-detail">Region: {countryInfo.region}</p>
+              <p className="saved-country-detail">Population: {countryInfo.population.toLocaleString()}</p>
+            </>
+          )}
+        </div>
+        <button
+          className="unsave-btn"
+          onClick={() => handleUnsave(saved.country_name)}
+        >
+          ✕
+        </button>
       </div>
+    );
+  })}
+</div>
 
      {/* show welcome message if a user exists */}
       {currentUser && (
