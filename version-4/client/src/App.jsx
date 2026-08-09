@@ -5,6 +5,7 @@ import Home from "./pages/Home.jsx";
 import SavedCountries from "./pages/SavedCountries.jsx";
 import CountryDetail from "./pages/CountryDetail.jsx";
 import "./App.css";
+import Quiz from "./pages/Quiz.jsx";
 
 // The API URL — we only request the fields we actually need
 const API_URL = "https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region,cca3,borders";
@@ -75,14 +76,16 @@ function App() {
       <header className="header">
         <Link to="/" className="header-title">Where in the world?</Link>
         <Link to="/saved" className="header-saved">Saved Countries</Link>
+        <Link to="/quiz" className="header-quiz">🌍 Flag Quiz</Link>
       </header>
 
       {/* Routes decide which page to show based on the URL */}
       <Routes>
-        <Route path="/" element={<Home countriesData={countriesData} />} />
-        <Route path="/saved" element={<SavedCountries countriesData={countriesData} />} />
-        <Route path="/country/:cca3" element={<CountryDetail countriesData={countriesData} />} />
-      </Routes>
+  <Route path="/" element={<Home countriesData={countriesData} />} />
+  <Route path="/saved" element={<SavedCountries countriesData={countriesData} />} />
+  <Route path="/country/:cca3" element={<CountryDetail countriesData={countriesData} />} />
+  <Route path="/quiz" element={<Quiz countriesData={countriesData} />} />
+</Routes>
     </BrowserRouter>
   );
 }
