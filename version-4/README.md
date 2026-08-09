@@ -6,11 +6,15 @@ This project is a full-stack web app that lets users explore countries from arou
 
 ## 🚀 Live Site
 
-Here's the link to view the live app: ___________
+Here's the link to view the live app: https://countries-app-jana.netlify.app/ 
 
 ## 🖼️ Screenshots
 
-[screenshot here]
+<img width="1440" height="809" alt="Screenshot 2026-08-08 at 9 57 18 PM" src="https://github.com/user-attachments/assets/d77e9d1d-c447-44fb-b067-151b527e2244" />
+
+<img width="1440" height="814" alt="Screenshot 2026-08-08 at 9 56 51 PM" src="https://github.com/user-attachments/assets/21644b48-166e-4799-9b99-07dd9e2bb304" />
+
+
 
 ## ✨ Features
 
@@ -33,7 +37,7 @@ Here's the link to view the live app: ___________
 **Server/API**
 - **Languages:** JavaScript (Node.js)
 - **Framework:** Express
-- **Deployment:** ___________
+- **Deployment:** https://countries-app-xyba.onrender.com 
 
 **Database**
 - **Languages:** SQL (PostgreSQL)
@@ -42,15 +46,23 @@ Here's the link to view the live app: ___________
 ## 🔹 API Documentation
 
 These are the API endpoints I built:
-1. GET /get-newest-user
-2. GET /get-all-users
-3. POST /add-one-user
-4. GET /get-all-saved-countries
-5. POST /save-one-country
-6. POST /unsave-one-country
-7. POST /update-one-country-count
 
-Here's the link to the full API documentation: ___________
+Method | Endpoint | Full URL 
+
+1. GET | /get-newest-user | https://countries-app-xyba.onrender.com/get-newest-user 
+
+2. GET | /get-all-users | https://countries-app-xyba.onrender.com/get-all-users 
+
+3. POST | /add-one-user | https://countries-app-xyba.onrender.com/add-one-user 
+
+4. GET | /get-all-saved-countries | https://countries-app-xyba.onrender.com/get-all-saved-countries 
+
+5. POST | /save-one-country | https://countries-app-xyba.onrender.com/save-one-country 
+
+6. POST | /unsave-one-country | https://countries-app-xyba.onrender.com/unsave-one-country 
+
+7. POST | /update-one-country-count | https://countries-app-xyba.onrender.com/update-one-country-count 
+
 
 ## 🗄️ Database Schema
 
