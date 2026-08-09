@@ -1,0 +1,69 @@
+-------------------------------------
+SQL & EXPRESS API MATCHING WORKSHEET
+-------------------------------------
+
+My Countries App SQL DB Fiddle Link: https://www.db-fiddle.com/f/swT3QBvX9Fc8LMzaP9UHUn/15
+
+-------------------------------------
+USERS
+-------------------------------------
+
+GET /get-newest-user
+Description: Retrieves the most recently added user.
+Your SQL command:
+SELECT * FROM users ORDER BY user_id DESC LIMIT 1;
+
+GET /get-all-users
+Description: Retrieves all users from the database.
+Your SQL command:
+SELECT * FROM users ORDER BY user_id;
+
+POST /add-one-user
+Description: Adds a new user to the database.
+Your SQL command:
+INSERT INTO users (name, email, country_name, bio) VALUES ($1, $2, $3, $4);
+
+Dynamic values:
+$1 = name (from request body)
+$2 = email (from request body)
+$3 = country_name (from request body)
+$4 = bio (from request body)
+
+-------------------------------------
+📊 SAVED COUNTRIES
+-------------------------------------
+
+GET /get-all-saved-countries
+Description: Retrieves a list of all saved countries.
+Your SQL command:
+SELECT country_name FROM saved_countries;
+
+POST /save-one-country
+Description: Saves a country if it hasn't already been saved.
+Your SQL command:
+INSERT INTO saved_countries (country_name) VALUES ($1) ON CONFLICT DO NOTHING;
+
+Dynamic values:
+$1 = country_name (from request body)
+
+POST /unsave-one-country
+Description: Unsaves a country if it has been saved.
+Your SQL command:
+DELETE FROM saved_countries WHERE country_name = $1;
+
+Dynamic values:
+$1 = country_name (from request body)
+
+-------------------------------------
+COUNTRY COUNTS
+-------------------------------------
+
+POST /update-one-country-count
+Description: Updates (or initializes) the view count for a country.
+Your SQL command:
+INSERT INTO country_counts (country_name, count) VALUES ($1, 1)
+ON CONFLICT (country_name) DO UPDATE SET count = country_counts.count + 1
+RETURNING count;
+
+Dynamic values:
+$1 = country_name (from request body)
